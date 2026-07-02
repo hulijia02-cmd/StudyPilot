@@ -1,34 +1,34 @@
-# StudyPilot
+# StudyPilot - AI Learning OS
 
-智能学习助手，助你高效掌控学习进度。
+StudyPilot is an AI-native learning operating system for planning, tutoring, practice, assessment, and review.
 
-## 项目简介
+## Stack
 
-StudyPilot 是一款现代化学习管理工具，帮助学习者规划学习路线、追踪学习进度、管理学习资源。
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS
+- Supabase
+- Vercel
 
-## 技术栈
-
-- Frontend: React / Next.js
-- Backend: Node.js
-- Deployment: Vercel
-
-## 快速开始
+## Getting Started
 
 ```bash
-# 安装依赖
-npm install
-
-# 启动开发服务器
-npm run dev
+pnpm install
+pnpm dev
 ```
 
-## 功能特性
+Create `.env.local` from `.env.example` and fill in your Supabase values.
 
-- 学习计划管理
-- 进度追踪
-- 资源整理
-- 统计分析
+## Scripts
 
-## 许可证
+```bash
+pnpm dev
+pnpm build
+pnpm typecheck
+pnpm lint
+```
 
-MIT
+## Supabase
+
+Initial schema is in `supabase/migrations/0001_initial_schema.sql`.
