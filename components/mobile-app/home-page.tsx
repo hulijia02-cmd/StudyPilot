@@ -47,7 +47,7 @@ export function HomePage({
             <input
               aria-label="学习目标"
               className="w-full rounded-2xl border-none bg-transparent px-3 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400"
-              disabled={isLoading || goal.trim().length < 2}
+              disabled={isLoading}
               name="goal"
               onChange={(event) => onGoalChange(event.target.value)}
               placeholder="例如：设计数学、Python 入门、考研英语"
@@ -55,7 +55,7 @@ export function HomePage({
             />
             <button
               className="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-sky-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-sky-200 transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
-              disabled={isLoading}
+              disabled={isLoading || goal.trim().length < 2}
               type="submit"
             >
               {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
