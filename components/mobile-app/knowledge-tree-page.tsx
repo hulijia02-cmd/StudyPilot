@@ -48,14 +48,14 @@ export function KnowledgeTreePage({
   if (!goal || tree.length === 0) {
     return (
       <section className="rounded-[28px] border border-dashed border-sky-200 bg-white p-5 text-center shadow-sm">
-        <h1 className="text-lg font-bold text-slate-950">û֪ʶͼ</h1>
-        <p className="mt-2 text-sm leading-6 text-slate-500">ѧϰĿ标AI  XMind һ课程全景图?</p>
+        <h1 className="text-lg font-bold text-slate-950">请先在首页输入学习目标</h1>
+        <p className="mt-2 text-sm leading-6 text-slate-500">输入学习目标后，AI 会生成课程全景图</p>
         <button
           className="mt-4 rounded-2xl bg-sky-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-sky-100"
           onClick={onGoHome}
           type="button"
         >
-          ȥҳ
+          去首页
         </button>
       </section>
     );
@@ -83,7 +83,7 @@ export function KnowledgeTreePage({
           <MapStat label="阶段" value={tree.length} />
           <MapStat label="模块" value={tree.reduce((sum, item) => sum + item.children.length, 0)} />
           <MapStat
- label="֪ʶ"
+ label="֪知识点"
             value={tree.reduce((sum, item) => sum + item.children.reduce((inner, child) => inner + child.children.length, 0), 0)}
           />
         </div>
@@ -100,7 +100,7 @@ export function KnowledgeTreePage({
               <p className="text-xs text-slate-500">横向滑动查看完整课程地图</p>
             </div>
           </div>
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold text-slate-500">AI 生成<a href="/mindmap" target="_blank" className="ml-2 rounded-lg bg-sky-100 px-2 py-1 text-[11px] font-bold text-sky-700 hover:bg-sky-200 transition whitespace-nowrap">?? ?</a></span>
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold text-slate-500">AI 生成<a href="/mindmap" target="_blank" className="ml-2 rounded-lg bg-sky-100 px-2 py-1 text-[11px] font-bold text-sky-700 hover:bg-sky-200 transition whitespace-nowrap">查看完整导图</a></span>
         </div>
 
         <div className="overflow-x-auto pb-2">
@@ -144,7 +144,7 @@ export function KnowledgeTreePage({
             <h2 className="mt-1 text-lg font-bold text-slate-950">{expandedModule.title}</h2>
             <p className="mt-1 text-xs leading-5 text-slate-500">点击下方节点查看 AI 讲解和学习建议?</p>
           </div>
-          <span className="rounded-2xl bg-sky-50 px-3 py-2 text-xs font-bold text-sky-700">三级结构<a href="/mindmap" target="_blank" className="ml-2 rounded-lg bg-sky-100 px-2 py-1 text-[11px] font-bold text-sky-700 hover:bg-sky-200 transition whitespace-nowrap">??? ?</a></span>
+          <span className="rounded-2xl bg-sky-50 px-3 py-2 text-xs font-bold text-sky-700">三级结构<a href="/mindmap" target="_blank" className="ml-2 rounded-lg bg-sky-100 px-2 py-1 text-[11px] font-bold text-sky-700 hover:bg-sky-200 transition whitespace-nowrap">查看完整导图</a></span>
         </div>
 
         <div className="mt-4 space-y-3">
