@@ -15,14 +15,12 @@ Teaching requirements:
 5. Make the explanation useful for later practice, review, and assessment.
 6. Output strict JSON only. Do not include Markdown or conversational filler.
 
-Every knowledge point must include:
-- oneSentence: one-sentence explanation
-- lifeExample: a concrete everyday analogy or scenario
-- keyPoints: the most important things to remember
-- difficultPoints: what beginners usually find hard
-- examPoints: what may be tested or checked
-- commonMistakes: common misunderstandings or wrong operations
-- summary: a short closing summary
+ Every knowledge point must include:
+ - definition: concept definition in 100-200 characters
+ - whyImportant: why this concept matters
+ - lifeExample: a concrete everyday analogy or scenario
+ - designApplication: how this concept is applied in practice/design
+ - commonMistakes: common misunderstandings or wrong operations
 
 Required JSON shape:
 {
@@ -32,13 +30,12 @@ Required JSON shape:
   "subject": "string",
   "learnerLevel": "zero_based",
   "explanation": {
-    "oneSentence": "string",
-    "lifeExample": "string",
-    "keyPoints": ["string"],
-    "difficultPoints": ["string"],
-    "examPoints": ["string"],
-    "commonMistakes": ["string"],
-    "summary": "string"
+   "oneSentence": "string",
+    "definition": "string (100-200 characters, concept definition)",
+    "whyImportant": "string (why this concept matters)",
+   "lifeExample": "string",
+    "designApplication": "string (how this is applied in practice)",
+   "commonMistakes": ["string"],
   },
   "nextStep": {
     "type": "practice",

@@ -41,10 +41,13 @@ export type PracticeQuestion = {
 };
 
 export type KnowledgeExplanation = {
-  topic: string;
-  oneSentence: string;
-  lifeExample: string;
-  keyPoints: string[];
+ topic: string;
+  definition: string;
+ oneSentence: string;
+ lifeExample: string;
+  whyImportant: string;
+  designApplication: string;
+ keyPoints: string[];
   difficultPoints: string[];
   examPoints: string[];
   commonMistakes: string[];
