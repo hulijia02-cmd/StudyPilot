@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   Brain,
@@ -176,8 +176,7 @@ export function KnowledgeTreePage({
           ))}
         </div>
 
-        {isLoadingExplanation ? null}
-      </section>
+        
     </div>
   );
 }
@@ -365,4 +364,3 @@ function Tag({ label }: { label: string }) {
 
   return <span className={`rounded-full px-2 py-1 text-[10px] font-bold ${color}`}>{label}</span>;
 }
-
