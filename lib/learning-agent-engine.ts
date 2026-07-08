@@ -5,8 +5,9 @@ import {
   type KnowledgeNode,
   type KnowledgeStatus,
   type KnowledgeType,
-  type LearningProgram,
+ type LearningProgram,
 } from "@/lib/mockLearningData";
+import { buildSubjectTree } from "@/lib/subjectTrees";
 
 type DomainProfile = {
   domain: string;
@@ -26,7 +27,7 @@ type DomainProfile = {
 export function createLearningProgram(rawGoal: string): LearningProgram {
   const goal = normalizeGoal(rawGoal);
   const profile = getDomainProfile(goal);
-  const tree = createKnowledgeTree(goal, profile);
+  const tree = buildSubjectTree(goal);
 
   return {
     goal,
