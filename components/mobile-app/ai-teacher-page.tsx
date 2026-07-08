@@ -43,8 +43,8 @@ export function AiTeacherPage({
   }
 
   return (
-    <div className="absolute inset-0 flex flex-col">
-      <div className="flex-1 overflow-y-auto px-4 pt-4 space-y-4">
+    <div className="flex flex-col gap-4">
+      <div>
       <header className="rounded-[28px] bg-white p-5 shadow-soft">
         <p className="text-xs font-semibold text-sky-600">当前学习主题</p>
         <h1 className="mt-2 text-2xl font-bold text-slate-950">{goal}</h1>
