@@ -1,3 +1,4 @@
+import { buildSubjectTree } from "@/lib/subjectTrees";
 import type { DailyPlan, KnowledgeNode, LearningProgram } from "@/lib/mockLearningData";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -166,7 +167,7 @@ export async function generateLearningPlan(goal: string): Promise<AIResult<Learn
   const config = getAIConfig();
 
   if (config.provider === "mock") {
-    return makeResult(createDynamicProgram(normalizedGoal), config, false);
+    return makeResult(createDynamicProgramWithRealTree(normalizedGoal), config, false);
   }
 
   try {
@@ -212,7 +213,7 @@ export async function generateLearningPlan(goal: string): Promise<AIResult<Learn
 
     return makeResult(programFromSeed(planSeedFromAIContent(content, normalizedGoal), normalizedGoal), config, false);
   } catch (error) {
-    return makeResult(createDynamicProgram(normalizedGoal), config, true, formatFallbackReason(error));
+    return makeResult(createDynamicProgramWithRealTree(normalizedGoal), config, true, formatFallbackReason(error));
   }
 }
 
@@ -574,7 +575,8 @@ function normalizeGoal(goal: string) {
 }
 
 function programFromSeed(seed: PlanSeed, goal: string): LearningProgram {
-  const fallback = createDynamicProgram(goal);
+ const fallback = createDynamicProgram(goal);
+  fallback.tree = buildSubjectTree(goal);
   const modules =
     Array.isArray(seed.modules) && seed.modules.length >= 4
       ? seed.modules.slice(0, 8).map((item, index) => ({
@@ -936,4 +938,9 @@ export async function generatePracticeSummary(input: { correct: number; total: n
   } catch (error) {
     return makeResult({ summary: "分析失败，请重试。", reviewAdvice: "建议重新学习相关知识点。" }, config, true, formatFallbackReason(error));
   }
+}
+function createDynamicProgramWithRealTree(goal: string): LearningProgram {
+  const program = createDynamicProgram(goal);
+  program.tree = buildSubjectTree(goal);
+  return program;
 }
