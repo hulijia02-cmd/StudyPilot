@@ -61,10 +61,14 @@ const [_isParsing, setIsParsing] = useState(false);
      setIsParsing(true);
      const result = await parseFile(selectedFile);
      setIsParsing(false);
-     if (result.success) {
-       setFileContent(result.content);
-       setAppState("questionnaire");
-     } else {
+    if (result.success) {
+      setFileContent(result.content);
+      setPurpose("通用学习");
+      setLevel("自动检测");
+      setTimeLimit("自定义");
+      setAppState("analyzing");
+      setTimeout(() => { handleAnalyze(); }, 100);
+    } else {
        setParseError(result.error || "文件解析失败");
        setFile(null);
      }

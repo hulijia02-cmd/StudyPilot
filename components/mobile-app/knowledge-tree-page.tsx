@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   Brain,
@@ -176,31 +176,7 @@ export function KnowledgeTreePage({
           ))}
         </div>
 
-        {isLoadingExplanation ? (
-          <div className="mt-5 flex items-center gap-2 rounded-2xl bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            AI 正在生成知识讲解
-          </div>
-        ) : null}
-
-        <div className="mt-5 space-y-4">
-          {explanation ? (
-            <>
-              <DetailBlock title="一句话解释" items={[explanation.oneSentence]} />
-              <DetailBlock title="生活例子" items={[explanation.lifeExample]} />
-              <DetailBlock title="重点" items={explanation.keyPoints} />
-              <DetailBlock title="难点" items={explanation.difficultPoints} />
-              <DetailBlock title="考点" items={explanation.examPoints} />
-              <DetailBlock title="易错点" items={explanation.commonMistakes} />
-              <DetailBlock title="总结" items={[explanation.summary]} />
-            </>
-          ) : (
-            <>
-              <DetailBlock title="学习顺序" items={[activeNode.order]} />
-              <DetailBlock title="练习建议" items={[activeNode.practiceAdvice]} />
-            </>
-          )}
-        </div>
+        {isLoadingExplanation ? null}
       </section>
     </div>
   );
@@ -389,3 +365,4 @@ function Tag({ label }: { label: string }) {
 
   return <span className={`rounded-full px-2 py-1 text-[10px] font-bold ${color}`}>{label}</span>;
 }
+
