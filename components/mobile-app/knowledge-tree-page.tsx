@@ -176,7 +176,7 @@ export function KnowledgeTreePage({
           ))}
         </div>
 
-        
+        </section>
     </div>
   );
 }

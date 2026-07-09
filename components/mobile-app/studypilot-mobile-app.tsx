@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { loadMobileState, saveMobileState } from "@/lib/storage";
+import { buildSubjectTree } from "@/lib/subjectTrees";
 import { AiTeacherPage } from "@/components/mobile-app/ai-teacher-page";
 import { BottomTabBar } from "@/components/mobile-app/bottom-tab-bar";
 import { HomePage } from "@/components/mobile-app/home-page";
@@ -124,7 +125,7 @@ export function StudyPilotMobileApp() {
     try {
       const planResult = await postAI<LearningProgram>("/api/generate-plan", { goal: normalizedGoal });
       const mindmapResult = await postAI<MindmapResponse>("/api/mindmap", { goal: normalizedGoal });
-      const tree = parseMindmapToKnowledgeTree(mindmapResult.data.markdown, planResult.data.goal || normalizedGoal);
+      const tree = buildSubjectTree(normalizedGoal);
       if (tree.length === 0) throw new Error("AI \u77e5\u8bc6\u6811\u89e3\u6790\u5931\u8d25\uff0c\u8bf7\u91cd\u8bd5");
       const nextProgram: LearningProgram = { ...emptyProgram, ...planResult.data, goal: planResult.data.goal || normalizedGoal, tree };
       const firstNode = tree[0];
@@ -228,7 +229,7 @@ export function StudyPilotMobileApp() {
       setIsTeacherLoading(true);
       try {
         const result = await postAI<MindmapResponse>("/api/mindmap", { goal: program.goal });
-        setProgram((current) => current ? { ...current, tree: parseMindmapToKnowledgeTree(result.data.markdown, current.goal) } : current);
+        setProgram((current) => current ? { ...current, tree: buildSubjectTree(current.goal) } : current);
         setMessages((current) => [...current, { id: "ai-mindmap-" + Date.now(), role: "ai", content: result.data.markdown }]);
         setAiStatus("AI: " + (result.actualProvider ?? "deepseek") + " / " + (result.actualModel ?? "deepseek-chat"));
       } catch (requestError) {
